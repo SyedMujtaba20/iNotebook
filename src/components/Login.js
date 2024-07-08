@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   let history = useNavigate();
 
@@ -22,11 +22,11 @@ const Login = () => {
     console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
-      props.showAlerrt("Logged in Successfully", "success");
-      history.push("/");
+      props.showAlert("Logged in Successfully", "success");
+      history("/");
     } else {
       // alert("Ivalid Credentials");
-      props.showAlerrt("Ivalid Details", "danger");
+      props.showAlert("Invalid Details", "danger");
     }
   };
 
@@ -48,6 +48,7 @@ const Login = () => {
             name="email"
             aria-describedby="emailHelp"
             value={credentials.email}
+            onChange={onChange}
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -63,18 +64,10 @@ const Login = () => {
             id="password"
             name="password"
             value={credentials.password}
+            onChange={onChange}
           />
         </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
-          </label>
-        </div>
+
         <button type="submit" className="btn btn-primary">
           Submit
         </button>

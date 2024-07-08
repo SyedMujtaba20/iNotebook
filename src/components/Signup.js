@@ -28,11 +28,11 @@ const Signup = (props) => {
     console.log(json);
     if (json.success) {
       localStorage.setItem("token", json.authtoken);
-      history.push("/");
-      props.showAlerrt("Account Created Successfully", "success");
+      history("/");
+      props.showAlert("Account Created Successfully", "success");
     } else {
       // alert("Ivalid Credentials");
-      props.showAlerrt("Ivalid Credentials", "danger");
+      props.showAlert("Invalid Credentials", "danger");
     }
   };
 

@@ -5,7 +5,7 @@ const Navbar = () => {
   let history = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");
-    history.push("/login");
+    history("/login");
   };
 
   let location = useLocation();
@@ -55,11 +55,7 @@ const Navbar = () => {
           </ul>
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
-              <Link
-                className="btn btn-primary mx-1"
-                onTouchCancel="/login"
-                role="button"
-              >
+              <Link className="btn btn-primary mx-1" to="/login" role="button">
                 Login
               </Link>
               <Link className="btn btn-primary mx-1" to="/signup" role="button">
